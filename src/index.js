@@ -5,11 +5,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { typeDefs } from './schema';
 
 // server setup
  const server = new ApolloServer({
-  //typeDefs,
-  //resolvers,
+  //typeDefs- definitions of types of data,
+  typeDefs
+  //resolvers - resolver functions to handle graphql queries,
  })
 
  const {url} = await startStandaloneServer(server, {liste: {port: 4000}});
