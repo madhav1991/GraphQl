@@ -56,6 +56,16 @@ const resolvers = {
 
       db.games.push(game);
       return game
+    },   
+    updateGame(_, args){
+      db.games = db.games.map((g) => {
+        if(g.id === args.id){
+          return {...g, ...args.edits}
+        }
+        return g
+      })
+
+      return db.games.find((g) => g.id === args.id)
     }
   }
 };
@@ -67,5 +77,5 @@ const resolvers = {
   //resolvers - resolver functions to handle graphql queries,
  })
 
- const {url} = await startStandaloneServer(server, {liste: {port: 4000}});
+ const {url} = await startStandaloneServer(server, {listen: {port: 4000}});
  console.log("Server ready at port", 4000);
